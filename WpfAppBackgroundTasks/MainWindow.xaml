@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfAppBackgroundTasks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppBackgroundTasks"
+        mc:Ignorable="d"
+        Title="ThreadingMöglichkeiten" Height="600" Width="600">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Slider Grid.Row="0"  
+                Margin ="10"
+        VerticalAlignment="Center" 
+        Value="{Binding Path= AnzahlZahlen, Mode=TwoWay}"
+        Minimum= "100" Maximum="2000000000" />
+        <Button Margin ="10"  Grid.Row="1"  Click="LetzteFibonacciZahl">
+            <Viewbox>
+                <TextBlock Margin ="5">
+        <Run>Generiere</Run>
+        <Run Text="{Binding Path = AnzahlZahlen, Mode = TwoWay}"/>
+        <Run>Fibonacci Zahlen</Run>
+                </TextBlock>
+            </Viewbox>
+        </Button>
+        <Viewbox Grid.Row =" 2" Margin ="10">
+            <TextBlock  VerticalAlignment="Center"><Run> Die letzte Fibonacci Zahl lautet </Run><Run Name="Anzeige">...</Run></TextBlock>
+        </Viewbox>
+        <Border  Margin ="10"
+                 Padding="10" 
+                 Grid.Row="3" 
+                 Grid.RowSpan="2" 
+                 BorderThickness="3" 
+                 BorderBrush="Black"
+                 CornerRadius="10">
+            <Viewbox HorizontalAlignment="Left" Grid.Row="3" Grid.RowSpan="2">
+                <StackPanel>
+                    <TextBlock>Modus:</TextBlock>
+                    <RadioButton Name="rB_Mode_InDiesemThread" Content="in diesem Thread" IsChecked="True"/>
+                    <RadioButton Name="rB_Mode_TaskFactory" Content="Task Factory" IsEnabled="False"/>
+                    <RadioButton Name="rB_Mode_awaitTask" Content="await Task"/>
+                    <RadioButton Name="rB_Mode_BackgroundWorker" Content="Background Worker"/>
+                </StackPanel>
+            </Viewbox>
+        </Border>
+    </Grid>
+</Window>
